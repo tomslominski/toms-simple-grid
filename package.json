@@ -1,0 +1,22 @@
+{
+  "name": "toms-simple-grid",
+  "version": "0.0.1",
+  "description": "",
+  "main": "_index.scss",
+  "scripts": {
+    "watch": "sass _index.scss output.css --no-source-map --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomslominski/toms-simple-grid.git"
+  },
+  "author": "Tom Slominski <tom@slomin.ski>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomslominski/toms-simple-grid/issues"
+  },
+  "homepage": "https://github.com/tomslominski/toms-simple-grid#readme",
+  "dependencies": {
+    "toms-sass-helpers": "^1.1.0"
+  }
+}
