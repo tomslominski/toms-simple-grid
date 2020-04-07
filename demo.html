@@ -5,11 +5,23 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 		<link rel="stylesheet" href="output.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<style>
+			.filled p {
+				background: rgba(0, 0, 0, 0.25);
+			}
+		</style>
 	</head>
 	
 	<body>
-		<div class="container">
-			<div class="row">
+		<div class="t-container">
+			<h1>Grid demo</h1>	
+		</div>
+		
+		<div class="t-container">
+			<h2>Responsive demo</h2>
+				
+			<div class="t-row">
 				<div class="t-width-1-2 t-width-md-1-4">
 					<p>Half width on mobile.</p>
 						
@@ -32,6 +44,28 @@
 					<p>Half width on mobile.</p>
 						
 					<p>Quarter width on desktop.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="t-container">
+			<h2>Nested t-rows with gutter sizes demo</h2>
+				
+			<div class="t-row filled">
+				<div class="t-width-11-12">
+					<div class="t-row gutter-large">
+						<div class="t-width-1-2">
+							<p>1/2</p>
+						</div>
+						
+						<div class="t-width-1-2">
+							<p>1/2</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="t-width-1-12">
+					<p>1/12</p>
 				</div>
 			</div>
 		</div>

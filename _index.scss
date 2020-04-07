@@ -14,19 +14,39 @@
 /// @prop {string} Key - Breakpoint name from toms-sass-helpers package.
 /// @prop {list} Value - A list of grid widths to generate for this breakpoint.
 $grid-sizes: (
-	"*": (1, 2),
-	'sm': (1, 3, 4, 12),
-	'md': (1, 3, 4, 12),
-	"lg": (1, 3, 4, 12),
-	"xl": (1, 3, 4, 12),
-	"xxl": (1, 3, 4, 12),
-	"xxxl": (1, 3, 4, 12)
-);
+	"*": (1, 2, 3, 4, 12),
+	'sm': (1, 2, 3, 4, 12),
+	'md': (1, 2, 3, 4, 12),
+	"lg": (1, 2, 3, 4, 12),
+	"xl": (1, 2, 3, 4, 12),
+	"xxl": (1, 2, 3, 4, 12),
+	"xxxl": (1, 2, 3, 4, 12)
+) !default;
 
 /// Maximum allowed grid width.
 ///
 /// @type number
-$grid-width: 1200px;
+$grid-width: 1200px !default;
+
+/// Default gutter width.
+///
+/// @type number
+$default-gutter: 20px !default;
+
+/// Small gutter width.
+///
+/// @type number
+$gutter-small: $default-gutter * 0.5 !default;
+
+/// Large gutter width.
+///
+/// @type number
+$gutter-large: $default-gutter * 2 !default;
+
+/// Class prefix.
+///
+/// @type string
+$class-prefix: "t-" !default;
 
 /// Wrap the content in breakpoint, if necessary
 ///
@@ -49,35 +69,116 @@ $grid-width: 1200px;
 /// @return {string} CSS class name.
 @function grid-class-name( $name, $current, $total ) {
 	@if "*" == $name {
-		@return ".t-width-#{$current}-#{$total}";
+		@return ".#{$class-prefix}width-#{$current}-#{$total}";
 	} @else {
-		@return ".t-width-#{$name}-#{$current}-#{$total}";
+		@return ".#{$class-prefix}width-#{$name}-#{$current}-#{$total}";
 	}
 }
 
-.container {
+.#{$class-prefix}container {
 	width: 100%;
 	max-width: $grid-width;
 	margin-left: auto;
 	margin-right: auto;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: $default-gutter;
+	padding-right: $default-gutter;
 	box-sizing: border-box;
 	
-	* {
-		box-sizing: border-box;
+	&.#{$class-prefix}container-large {
+		max-width: $grid-width * 1.5;
+	}
+	
+	&.#{$class-prefix}container-full-width {
+		max-width: 100%;
+	}
+	
+	&.#{$class-prefix}gutter-small {
+		padding-left: $gutter-small;
+		padding-right: $gutter-small;
+	
+		> .row {
+			margin-left: $gutter-small * -1;
+			margin-right: $gutter-small * -1;
+	
+			> [class^="#{$class-prefix}width"] {
+				padding-left: $gutter-small;
+				padding-right: $gutter-small;
+			}
+		}
+	}
+	
+	&.#{$class-prefix}gutter-large {
+		padding-left: $gutter-large;
+		padding-right: $gutter-large;
+	
+		> .#{$class-prefix}row {
+			margin-left: $gutter-large * -1;
+			margin-right: $gutter-large * -1;
+	
+			> [class^="#{$class-prefix}width"] {
+				padding-left: $gutter-large;
+				padding-right: $gutter-large;
+			}
+		}
 	}
 }
 
-.row {
+.#{$class-prefix}row {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 0 -20px;
+	margin-left: $default-gutter * -1;
+	margin-right: $default-gutter * -1;
+	box-sizing: border-box;
+	
+	&.#{$class-prefix}gutter-small {
+		margin-left: $gutter-small * -1;
+		margin-right: $gutter-small * -1;
+
+		> [class^="#{$class-prefix}width"] {
+			padding-left: $gutter-small;
+			padding-right: $gutter-small;
+		}
+	}
+	
+	&.#{$class-prefix}gutter-large {
+		margin-left: $gutter-large * -1;
+		margin-right: $gutter-large * -1;
+
+		> [class^="#{$class-prefix}width"] {
+			padding-left: $gutter-large;
+			padding-right: $gutter-large;
+		}
+	}
+	
+	&.#{$class-prefix}vertical-start {
+		align-items: start;
+	}
+	
+	&.#{$class-prefix}vertical-center {
+		align-items: center;
+	}
+	
+	&.#{$class-prefix}vertical-end {
+		align-items: end;
+	}
+	
+	&.#{$class-prefix}horizontal-start {
+		justify-content: start;
+	}
+	
+	&.#{$class-prefix}horizontal-center {
+		justify-content: center;
+	}
+	
+	&.#{$class-prefix}horizontal-end {
+		justify-content: center;
+	}
 }
 
-[class^="t-width"] {
+[class^="#{$class-prefix}width"] {
 	padding-left: 20px;
 	padding-right: 20px;
+	box-sizing: border-box;
 }
 
 @each $name, $sizes in $grid-sizes {
@@ -92,4 +193,8 @@ $grid-width: 1200px;
 			}
 		}
 	}
+}
+
+.#{$class-prefix}height-1-1 {
+	height: 100%;
 }
