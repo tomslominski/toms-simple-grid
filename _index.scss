@@ -4,7 +4,7 @@
 /// @author Tom Slominski
 ////
 
-@use 'node_modules/toms-sass-helpers' as *;
+@use 'toms-sass-helpers' as *;
 @use 'sass:map';
 
 /// List of grid sizes to generate for each breakpoint.
