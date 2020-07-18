@@ -22,3 +22,11 @@ sass input.scss output.scss -I node_modules
 ```
 
 See [_index.scss](_index.scss) for a full list of variables you can modify.
+
+## Development
+
+When installing this package locally for development, the dependencies will not link to the correct folder. To get around this, you have to add the dependencies to the load path manually.
+
+```
+sass input.scss output.css -I node_modules/toms-simple-grid/node_modules
+```
