@@ -93,31 +93,21 @@ $class-prefix: "t-" !default;
 	}
 	
 	&.#{$class-prefix}gutter-small {
-		padding-left: $gutter-small;
-		padding-right: $gutter-small;
-	
-		> .row {
+		> .#{$class-prefix}row {
 			margin-left: $gutter-small * -1;
-			margin-right: $gutter-small * -1;
-	
-			> [class^="#{$class-prefix}width"] {
+			
+			> * {
 				padding-left: $gutter-small;
-				padding-right: $gutter-small;
 			}
 		}
 	}
 	
 	&.#{$class-prefix}gutter-large {
-		padding-left: $gutter-large;
-		padding-right: $gutter-large;
-	
 		> .#{$class-prefix}row {
 			margin-left: $gutter-large * -1;
-			margin-right: $gutter-large * -1;
-	
-			> [class^="#{$class-prefix}width"] {
+			
+			> * {
 				padding-left: $gutter-large;
-				padding-right: $gutter-large;
 			}
 		}
 	}
@@ -127,26 +117,21 @@ $class-prefix: "t-" !default;
 	display: flex;
 	flex-wrap: wrap;
 	margin-left: $default-gutter * -1;
-	margin-right: $default-gutter * -1;
 	box-sizing: border-box;
 	
 	&.#{$class-prefix}gutter-small {
 		margin-left: $gutter-small * -1;
-		margin-right: $gutter-small * -1;
-
-		> [class^="#{$class-prefix}width"] {
+		
+		> * {
 			padding-left: $gutter-small;
-			padding-right: $gutter-small;
 		}
 	}
 	
 	&.#{$class-prefix}gutter-large {
 		margin-left: $gutter-large * -1;
-		margin-right: $gutter-large * -1;
-
-		> [class^="#{$class-prefix}width"] {
+		
+		> * {
 			padding-left: $gutter-large;
-			padding-right: $gutter-large;
 		}
 	}
 	
@@ -173,12 +158,11 @@ $class-prefix: "t-" !default;
 	&.#{$class-prefix}horizontal-end {
 		justify-content: center;
 	}
-}
-
-[class^="#{$class-prefix}width"] {
-	padding-left: 20px;
-	padding-right: 20px;
-	box-sizing: border-box;
+	
+	& > * {
+		padding-left: $default-gutter; // Does this need to be the same as the gutter?
+		box-sizing: border-box;
+	}
 }
 
 @each $name, $sizes in $grid-sizes {
