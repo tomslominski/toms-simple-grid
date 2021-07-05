@@ -4,7 +4,7 @@
   "description": "",
   "main": "_index.scss",
   "scripts": {
-    "watch": "sass _index.scss output.css --no-source-map --watch"
+    "watch": "sass _index.scss output.css --no-source-map --load-path=node_modules --watch"
   },
   "repository": {
     "type": "git",
