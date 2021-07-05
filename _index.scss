@@ -1,11 +1,12 @@
 ////
 /// Tom's Simple Grid
-/// 
+///
 /// @author Tom Slominski
 ////
 
 @use 'toms-sass-helpers' as *;
 @use 'sass:map';
+@use 'sass:math';
 
 /// List of grid sizes to generate for each breakpoint.
 /// `*` is for generating classes with no breakpoint.
@@ -83,29 +84,29 @@ $class-prefix: "t-" !default;
 	padding-left: $default-gutter;
 	padding-right: $default-gutter;
 	box-sizing: border-box;
-	
+
 	&.#{$class-prefix}container-large {
 		max-width: $grid-width * 1.5;
 	}
-	
+
 	&.#{$class-prefix}container-full-width {
 		max-width: 100%;
 	}
-	
+
 	&.#{$class-prefix}gutter-small {
 		> .#{$class-prefix}row {
 			margin-left: $gutter-small * -1;
-			
+
 			> * {
 				padding-left: $gutter-small;
 			}
 		}
 	}
-	
+
 	&.#{$class-prefix}gutter-large {
 		> .#{$class-prefix}row {
 			margin-left: $gutter-large * -1;
-			
+
 			> * {
 				padding-left: $gutter-large;
 			}
@@ -118,47 +119,47 @@ $class-prefix: "t-" !default;
 	flex-wrap: wrap;
 	margin-left: $default-gutter * -1;
 	box-sizing: border-box;
-	
+
 	&.#{$class-prefix}gutter-small {
 		margin-left: $gutter-small * -1;
-		
+
 		> * {
 			padding-left: $gutter-small;
 		}
 	}
-	
+
 	&.#{$class-prefix}gutter-large {
 		margin-left: $gutter-large * -1;
-		
+
 		> * {
 			padding-left: $gutter-large;
 		}
 	}
-	
+
 	&.#{$class-prefix}vertical-start {
 		align-items: start;
 	}
-	
+
 	&.#{$class-prefix}vertical-center {
 		align-items: center;
 	}
-	
+
 	&.#{$class-prefix}vertical-end {
 		align-items: end;
 	}
-	
+
 	&.#{$class-prefix}horizontal-start {
 		justify-content: start;
 	}
-	
+
 	&.#{$class-prefix}horizontal-center {
 		justify-content: center;
 	}
-	
+
 	&.#{$class-prefix}horizontal-end {
 		justify-content: center;
 	}
-	
+
 	& > * {
 		padding-left: $default-gutter; // Does this need to be the same as the gutter?
 		box-sizing: border-box;
@@ -170,9 +171,9 @@ $class-prefix: "t-" !default;
 		@each $size in $sizes {
 			@for $i from 1 through $size {
 				$class-name: grid-class-name( $name, $i, $size );
-				
+
 				#{$class-name} {
-					width: $i / $size * 100%;
+					width: math.div( $i, $size ) * 100%;
 				}
 			}
 		}
